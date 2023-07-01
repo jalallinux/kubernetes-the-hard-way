@@ -1,41 +1,70 @@
 version: '3.9'
 
 services:
-  controller:
-    container_name: controller
+  controller_1:
+    container_name: controller-1
     build:
       context: .
       dockerfile: ./controller/Dockerfile
     tty: true
+    networks:
+      k8s:
+        ipv4_address: 10.240.0.11
 
-  node_1:
-    container_name: node-1
+  controller_2:
+    container_name: controller-2
     build:
       context: .
-      dockerfile: ./node/Dockerfile
+      dockerfile: ./controller/Dockerfile
     tty: true
     networks:
-      - k8s
+      k8s:
+        ipv4_address: 10.240.0.12
 
-  node_2:
-    container_name: node-2
+  controller_3:
+    container_name: controller-3
     build:
       context: .
-      dockerfile: ./node/Dockerfile
+      dockerfile: ./controller/Dockerfile
     tty: true
     networks:
-      - k8s
+      k8s:
+        ipv4_address: 10.240.0.13
 
-  node_3:
-    container_name: node-3
+  worker_1:
+    container_name: worker-1
     build:
       context: .
-      dockerfile: ./node/Dockerfile
+      dockerfile: ./worker/Dockerfile
     tty: true
     networks:
-      - k8s
+      k8s:
+        ipv4_address: 10.240.0.21
+
+  worker_2:
+    container_name: worker-2
+    build:
+      context: .
+      dockerfile: ./worker/Dockerfile
+    tty: true
+    networks:
+      k8s:
+        ipv4_address: 10.240.0.22
+
+  worker_3:
+    container_name: worker-3
+    build:
+      context: .
+      dockerfile: ./worker/Dockerfile
+    tty: true
+    networks:
+      k8s:
+        ipv4_address: 10.240.0.23
 
 
 networks:
   k8s:
-    driver: bridge
+    ipam:
+     config:
+       - subnet: 10.240.0.0/24
+         gateway: 10.240.0.1
