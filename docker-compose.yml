@@ -1,0 +1,41 @@
+version: '3.9'
+
+services:
+  controller:
+    container_name: controller
+    build:
+      context: .
+      dockerfile: ./controller/Dockerfile
+    tty: true
+
+  node_1:
+    container_name: node-1
+    build:
+      context: .
+      dockerfile: ./node/Dockerfile
+    tty: true
+    networks:
+      - k8s
+
+  node_2:
+    container_name: node-2
+    build:
+      context: .
+      dockerfile: ./node/Dockerfile
+    tty: true
+    networks:
+      - k8s
+
+  node_3:
+    container_name: node-3
+    build:
+      context: .
+      dockerfile: ./node/Dockerfile
+    tty: true
+    networks:
+      - k8s
+
+
+networks:
+  k8s:
+    driver: bridge
