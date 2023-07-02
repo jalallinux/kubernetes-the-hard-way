@@ -1,6 +1,6 @@
 FROM ghcr.io/jalallinux/laravel:php-82
 
-COPY certificate-generator certificate-generator
+COPY . .
 
 RUN apt-get update \
     && wget --show-progress --https-only --timestamping \
@@ -10,12 +10,6 @@ RUN apt-get update \
     && chmod +x kubectl cfssl_linux-amd64 cfssljson_linux-amd64 \
     && mv cfssl_linux-amd64 /usr/local/bin/cfssl \
     && mv cfssljson_linux-amd64 /usr/local/bin/cfssljson \
-    && mv kubectl /usr/local/bin/kubectl \
-    && sh certificate-generator/1-ca.sh \
-    && sh certificate-generator/2-admin.sh \
-    && sh certificate-generator/3-workers.sh \
-    && sh certificate-generator/4-kube-controller-manager.sh \
-    && sh certificate-generator/5-kube-proxy.sh \
-    && sh certificate-generator/6-kube-scheduler.sh \
-    && sh certificate-generator/7-api-server.sh \
-    && sh certificate-generator/8-service-account-key-pair.sh
+    && mv kubectl /usr/local/bin/kubectl
+
+RUN sh certificates-generator/run.sh
