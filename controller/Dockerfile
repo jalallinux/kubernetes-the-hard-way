@@ -13,3 +13,4 @@ RUN apt-get update \
     && mv kubectl /usr/local/bin/kubectl
 
 RUN sh certificates/generators/run.sh
+RUN sh configs/generators/run.sh
