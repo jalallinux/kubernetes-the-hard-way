@@ -3,7 +3,7 @@ FROM ghcr.io/jalallinux/laravel:php-82
 COPY . .
 
 RUN apt-get update \
-    && apt-get install bash-completion \
+    # && apt-get install bash-completion \
     && curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.8.0/bin/linux/amd64/kubectl \
     && install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl \
     && rm kubectl \

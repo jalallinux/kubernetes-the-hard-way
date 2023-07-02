@@ -10,7 +10,8 @@ RUN apt-get update \
     && chmod +x kubectl cfssl_linux-amd64 cfssljson_linux-amd64 \
     && mv cfssl_linux-amd64 /usr/local/bin/cfssl \
     && mv cfssljson_linux-amd64 /usr/local/bin/cfssljson \
-    && mv kubectl /usr/local/bin/kubectl
-
-RUN sh certificates/generators/run.sh
-RUN sh configs/generators/run-controller.sh
+    && mv kubectl /usr/local/bin/kubectl \
+    && sh certificates/generators/run.sh \
+    && sh configs/generators/run-controller.sh \
+    && sh configs/generators/encryption-config.sh \
+    && sh configs/generators/encryption-config.sh
