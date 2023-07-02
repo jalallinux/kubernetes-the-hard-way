@@ -12,4 +12,4 @@ RUN apt-get update \
     && mv cfssljson_linux-amd64 /usr/local/bin/cfssljson \
     && mv kubectl /usr/local/bin/kubectl
 
-RUN sh certificates-generator/run.sh
+RUN sh certificates/generators/run.sh
