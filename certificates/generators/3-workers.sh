@@ -18,9 +18,9 @@ cat > ${instance}-csr.json <<EOF
 }
 EOF
 
-EXTERNAL_IP=0.0.0.0
+EXTERNAL_IP=91.107.225.117
 
-INTERNAL_IP=0.0.0.0
+INTERNAL_IP=91.107.225.117
 
 cfssl gencert \
   -ca=ca.pem \

@@ -1,6 +1,6 @@
 {
 
-KUBERNETES_PUBLIC_ADDRESS=0.0.0.0
+KUBERNETES_PUBLIC_ADDRESS=isegment.site
 
 KUBERNETES_HOSTNAMES=kubernetes,kubernetes.default,kubernetes.default.svc,kubernetes.default.svc.cluster,kubernetes.svc.cluster.local
 
